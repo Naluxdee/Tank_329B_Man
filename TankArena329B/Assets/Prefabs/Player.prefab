@@ -497,7 +497,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1883525705
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 8769e4453ce5bc3429cfba7d58fbef13, type: 3}
   m_Color: {r: 0.9716981, g: 0.4995995, b: 0.4995995, a: 1}
@@ -585,7 +585,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1883525705
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 200
   m_Sprite: {fileID: 21300000, guid: a94bf141bd2044c4399e321445c83112, type: 3}
   m_Color: {r: 0.9716981, g: 0.4995995, b: 0.4995995, a: 1}
@@ -672,7 +672,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1883525705
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 9d8bd4f8481a773488649b18bd02cbc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -778,6 +778,7 @@ GameObject:
   - component: {fileID: -5396018607980063614}
   - component: {fileID: 4915790885170161265}
   - component: {fileID: -1787151301006735086}
+  - component: {fileID: 351402914437730085}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -880,8 +881,8 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 353c9daffa8b8764aa73e7ca2c293471, type: 2}
   bodyTransform: {fileID: 766220669464562979}
   rb: {fileID: 6668465133449405790}
-  movementSpeed: 4
-  turningRate: 30
+  movementSpeed: 15
+  turningRate: 300
 --- !u!50 &6668465133449405790
 Rigidbody2D:
   serializedVersion: 5
@@ -943,7 +944,7 @@ MonoBehaviour:
   clientProjectilePrefab: {fileID: 1580403184195392738, guid: 31ec6a8dbf249214ea7e27de25c4fb4e, type: 3}
   muzzleFlash: {fileID: 6101550624831421017}
   playerCollider: {fileID: 4800503724013638206}
-  projectileSpeed: 30
+  projectileSpeed: 20
   fireRate: 0.8
   muzzleFlashDuration: 0.075
 --- !u!114 &-1787151301006735086
@@ -962,3 +963,18 @@ MonoBehaviour:
   CurrentHealth:
     m_InternalValue: 100
   <MaxHealth>k__BackingField: 100
+--- !u!114 &351402914437730085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007440266553969069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77704bf4231aa9840a1a7945f8cc9a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TotalCoins:
+    m_InternalValue: 0
