@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ProjectileLauncher : NetworkBehaviour
 {
@@ -11,19 +12,18 @@ public class ProjectileLauncher : NetworkBehaviour
     [SerializeField] private GameObject clientProjectilePrefab;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Collider2D playerCollider;
+    [SerializeField] private int costToFire;
 
     [Header("Settings")]
     [SerializeField] private float projectileSpeed;
-
     [SerializeField] private float fireRate;
     [SerializeField] private float muzzleFlashDuration;
-    [SerializeField] private int costToFire;
 
+    private bool isPointerOverUI;
     private bool shouldFire;
     //private float previousFireTime;
-    private float timer;
     private float muzzleFlashTimer;
-
+    private float timer;
     public override void OnNetworkSpawn()
     {
         if (!IsOwner) { return; }
@@ -43,22 +43,32 @@ public class ProjectileLauncher : NetworkBehaviour
         if (muzzleFlashTimer > 0f)
         {
             muzzleFlashTimer -= Time.deltaTime;
+
             if (muzzleFlashTimer <= 0f)
             {
                 muzzleFlash.SetActive(false);
             }
         }
+
         if (!IsOwner) { return; }
+        isPointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
         if (timer > 0)
         {
             timer -= Time.deltaTime;
         }
+
+        if (wallet.TotalCoins.Value < costToFire)
+        {
+            return;
+        }
+
+
+
         if (!shouldFire) { return; }
 
         if (timer > 0) { return; }
 
-        if (wallet.TotalCoins.Value < costToFire) { return; }
         PrimaryFireServerRpc(projectileSpawnPoint.position, projectileSpawnPoint.up);
         SpawnDummyProjectile(projectileSpawnPoint.position, projectileSpawnPoint.up);
 
@@ -67,6 +77,10 @@ public class ProjectileLauncher : NetworkBehaviour
 
     private void HandlePrimaryFire(bool shouldFire)
     {
+        if (shouldFire)
+        {
+            if (isPointerOverUI) { return; }
+        }
         this.shouldFire = shouldFire;
     }
 
@@ -117,6 +131,7 @@ public class ProjectileLauncher : NetworkBehaviour
             Quaternion.identity);
 
         projectileInstance.transform.up = direction;
+
         Physics2D.IgnoreCollision(playerCollider, projectileInstance.GetComponent<Collider2D>());
 
         if (projectileInstance.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))

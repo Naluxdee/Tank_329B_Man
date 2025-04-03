@@ -6,25 +6,31 @@ using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
-using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
+using Unity.Services.Authentication;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HostGameManager : IDisposable
 {
     private Allocation allocation;
-    private string joinCode;
-    private string lobbyId;
+    private NetworkObject playerPrefab;
 
+    private string lobbyId;
+    public string JoinCode { get; private set; }
     public NetworkServer NetworkServer { get; private set; }
 
     private const int MaxConnections = 20;
     private const string GameSceneName = "Game";
-    private const string JoinCodeKey = "JoinCode";
+
+    public HostGameManager(NetworkObject playerPrefab)
+    {
+        this.playerPrefab = playerPrefab;
+    }
+
     public async Task StartHostAsync()
     {
         try
@@ -38,9 +44,8 @@ public class HostGameManager : IDisposable
         }
         try
         {
-            joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-            Debug.Log(joinCode);
-            PlayerPrefs.SetString(JoinCodeKey, joinCode);
+            JoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+            Debug.Log(JoinCode);
         }
         catch (Exception e)
         {
@@ -62,7 +67,7 @@ public class HostGameManager : IDisposable
                 {
                     "JoinCode",new DataObject(
                         visibility: DataObject.VisibilityOptions.Member,
-                        value: joinCode
+                        value: JoinCode
                     )
                 }
             };
@@ -79,7 +84,7 @@ public class HostGameManager : IDisposable
             return;
         }
 
-        NetworkServer = new NetworkServer(NetworkManager.Singleton);
+        NetworkServer = new NetworkServer(NetworkManager.Singleton, playerPrefab);
 
         UserData userData = new UserData
         {
@@ -114,6 +119,19 @@ public class HostGameManager : IDisposable
     {
         Shutdown();
     }
+
+    private async void HandleClientLeft(string authId)
+    {
+        try
+        {
+            await LobbyService.Instance.RemovePlayerAsync(lobbyId, authId);
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
+
     public async void Shutdown()
     {
         HostSingleton.Instance.StopCoroutine(nameof(HeartbeatLobby));
@@ -133,18 +151,7 @@ public class HostGameManager : IDisposable
         }
 
         NetworkServer.OnClientLeft -= HandleClientLeft;
-        NetworkServer?.Dispose();
-    }
 
-    private async void HandleClientLeft(string authId)
-    {
-        try
-        {
-            await LobbyService.Instance.RemovePlayerAsync(lobbyId, authId);
-        }
-        catch (LobbyServiceException e)
-        {
-            Debug.Log(e);
-        }
+        NetworkServer?.Dispose();
     }
 }
