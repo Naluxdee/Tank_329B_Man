@@ -203,8 +203,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientPrefab: {fileID: 3541976251684761139, guid: 86676c3b9a76d8a47ab9d66cb5a12df3, type: 3}
   hostPrefab: {fileID: 4425406675818818121, guid: 6f373d52721a121478b65f9e20e68e2b, type: 3}
+  serverPrefab: {fileID: 903675800641997564, guid: e4fc54112330f6747b2faefef99c5360, type: 3}
   playerPrefab: {fileID: 489017936983071716, guid: ee4d1a18ff13665409625f28e1070ff3, type: 3}
 --- !u!4 &692543723
 Transform:
