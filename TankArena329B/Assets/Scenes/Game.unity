@@ -3305,7 +3305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1502680604
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4184,8 +4184,12 @@ MonoBehaviour:
   teamLeaderboardBackground: {fileID: 1278567054}
   leaderboardEntityPrefab: {fileID: 683708244594760128, guid: 99fac528e29fa634e99e10acebcb05ac, type: 3}
   entitiesToDisplay: 8
-  ownerColor: {r: 0.9339623, g: 0.7582253, b: 0, a: 1}
-  teamNames: []
+  ownerColor: {r: 0.93333334, g: 0.49167225, b: 0, a: 1}
+  teamNames:
+  - Blue Team
+  - Yellow Team
+  - Red Team
+  - Green Team
   teamColorLookup: {fileID: 11400000, guid: eeb699e8e0483b34f98be3c829f9a3a1, type: 2}
 --- !u!114 &2022198279
 MonoBehaviour:
