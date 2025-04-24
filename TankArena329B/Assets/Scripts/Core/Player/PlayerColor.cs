@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
 {
+    [SerializeField] private TeamColorLookup teamColorLookup;
     [SerializeField] private TankPlayer player;
     [SerializeField] private SpriteRenderer[] playerSprites;
-    [SerializeField] private Color[] tankColor;
+
     [SerializeField] private int colorIndex;
 
     private void Start()
@@ -18,7 +19,11 @@ public class PlayerColor : MonoBehaviour
         colorIndex = newIndex;
         foreach (SpriteRenderer sprite in playerSprites)
         {
-            sprite.color = tankColor[colorIndex];
+            if (teamColorLookup.GetTeamColor(colorIndex) != null)
+            {
+                sprite.color = (Color)teamColorLookup.GetTeamColor(colorIndex);
+            }
+
         }
     }
 

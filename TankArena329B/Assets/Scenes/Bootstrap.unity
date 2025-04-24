@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4575472, g: 0.70991844, b: 1, a: 1}
+  m_Color: {r: 0.45882353, g: 0.70980394, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78022563, g: 0.48584908, b: 1, a: 1}
+  m_Color: {r: 0.78039217, g: 0.4862745, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+  m_Color: {r: 1, g: 0.53333336, b: 0.53333336, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4764151, g: 1, b: 0.73923415, a: 1}
+  m_Color: {r: 0.4745098, g: 1, b: 0.7411765, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.93784684, b: 0.504717, a: 1}
+  m_Color: {r: 1, g: 0.9372549, b: 0.5058824, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2979,25 +2979,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121346b7f7323c44c9cabbce29a42d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorLookup: {fileID: 11400000, guid: eeb699e8e0483b34f98be3c829f9a3a1, type: 2}
   playerSprites:
   - {fileID: 1265219119}
   - {fileID: 1173426289}
   selectionButton:
   - colorButton: {fileID: 140903704}
     selectionBox: {fileID: 1957316721}
-    color: {r: 0.4575472, g: 0.70991844, b: 1, a: 1}
+    color: {r: 0.45882353, g: 0.70980394, b: 1, a: 1}
   - colorButton: {fileID: 957313326}
     selectionBox: {fileID: 1377119018}
-    color: {r: 1, g: 0.93784684, b: 0.504717, a: 1}
+    color: {r: 1, g: 0.9372549, b: 0.5058824, a: 1}
   - colorButton: {fileID: 464319381}
     selectionBox: {fileID: 614280893}
-    color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+    color: {r: 1, g: 0.53333336, b: 0.53333336, a: 1}
   - colorButton: {fileID: 511619557}
     selectionBox: {fileID: 288033654}
-    color: {r: 0.4764151, g: 1, b: 0.73923415, a: 1}
+    color: {r: 0.4745098, g: 1, b: 0.7411765, a: 1}
   - colorButton: {fileID: 401940350}
     selectionBox: {fileID: 557018453}
-    color: {r: 0.78022563, g: 0.48584908, b: 1, a: 1}
+    color: {r: 0.78039217, g: 0.4862745, b: 1, a: 1}
   colorIndex: 0
 --- !u!4 &1943089994
 Transform:
